@@ -30,7 +30,7 @@ namespace WpfApp1
             {
                 var item = new TreeViewItem() { Header = drive, Tag = drive };
                 item.Expanded += Folder_Expanded;
-                item.Items.Add(null); // Add dummy item
+                item.Items.Add(null);
                 FileTreeView.Items.Add(item);
             }
         }
@@ -50,7 +50,7 @@ namespace WpfApp1
                     {
                         var subItem = new TreeViewItem() { Header = System.IO.Path.GetFileName(dir), Tag = dir };
                         subItem.Expanded += Folder_Expanded;
-                        subItem.Items.Add(null); // Add dummy item
+                        subItem.Items.Add(null);
                         item.Items.Add(subItem);
                     }
 
