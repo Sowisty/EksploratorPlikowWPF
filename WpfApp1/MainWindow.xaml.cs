@@ -62,7 +62,7 @@ namespace WpfApp1
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error loading directory: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Nie można wczytać: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace WpfApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error selecting file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Błąd pliku: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -108,7 +108,7 @@ namespace WpfApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error displaying file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Błąd wczytywania pliku: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -125,17 +125,17 @@ namespace WpfApp1
                     try
                     {
                         File.Copy(selectedFilePath, dialog.FileName);
-                        MessageBox.Show("File copied successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Pomyślnie skopiowano plik (wymaga ponownego uruchomienia programu).", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error copying file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($"Nie można skopiować pliku: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("No file selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Nie wybrano pliku.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -152,17 +152,17 @@ namespace WpfApp1
                     try
                     {
                         File.Move(selectedFilePath, dialog.FileName);
-                        MessageBox.Show("File moved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Pomyślnie przeniesiono plik (wymaga ponownego uruchomienia programu).", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error moving file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($"Nie można przenieść pliku: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("No file selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Nie wybrano pliku.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -171,25 +171,23 @@ namespace WpfApp1
         {
             if (selectedFilePath != null)
             {
-                var result = MessageBox.Show("Are you sure you want to delete this file?", "Delete Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                var result = MessageBox.Show("Czy na pewno chcesz usunąć ten plik?", "Delete Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
                     try
                     {
                         File.Delete(selectedFilePath);
-                        MessageBox.Show("File deleted successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                        // Optionally, refresh the tree view to reflect the deletion
-                        InitializeTreeView();
+                        MessageBox.Show("Pomyślnie usunięto plik (wymaga ponownego uruchomienia programu).", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error deleting file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($"Nie można usunąć pliku: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("No file selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Nie wybrano pliku.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
