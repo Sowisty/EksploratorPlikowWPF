@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WpfApp1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Eksplorator plików" Height="600" Width="800">
+        Title="Eksplorator plików" Height="720" Width="1280">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -22,14 +22,15 @@
 
         <!-- Podgląd po prawej stronie -->
         <ScrollViewer Grid.Column="1" Margin="10" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel Grid.Column="1" Margin="10">
+            <StackPanel Grid.Column="1" Margin="1">
                 <TextBox Name="TextBoxPreview" 
                      Visibility="Collapsed" 
                      VerticalScrollBarVisibility="Auto" 
                      HorizontalScrollBarVisibility="Auto" 
                      TextWrapping="Wrap" 
-                     AcceptsReturn="True"/>
-                <Image Name="ImagePreview" Visibility="Collapsed"/>
+                     AcceptsReturn="True"
+                     IsReadOnly="True"/>
+                <Image Name="ImagePreview" Visibility="Collapsed" Stretch="Uniform" StretchDirection="Both"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
