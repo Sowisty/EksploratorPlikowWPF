@@ -32,6 +32,7 @@ namespace WpfApp1
                 item.Expanded += Folder_Expanded;
                 item.Items.Add(null);
                 FileTreeView.Items.Add(item);
+                item.IsExpanded = true;
             }
         }
 
@@ -93,7 +94,7 @@ namespace WpfApp1
             try
             {
                 string extension = System.IO.Path.GetExtension(path).ToLower();
-                if (extension == ".txt" || extension == ".csv" || extension == ".log")
+                if (extension == ".txt" || extension == ".csv" || extension == ".log" || extension == ".ini")
                 {
                     TextBoxPreview.Text = File.ReadAllText(path);
                     TextBoxPreview.Visibility = Visibility.Visible;
