@@ -47,23 +47,36 @@ namespace WpfApp1
 
                 try
                 {
-                    foreach (var dir in await Task.Run(() => Directory.GetDirectories(fullPath)))
+                    var directories = await Task.Run(() => Directory.GetDirectories(fullPath));
+                    var files = await Task.Run(() => Directory.GetFiles(fullPath));
+
+                    foreach (var dir in directories)
                     {
-                        var subItem = new TreeViewItem() { Header = System.IO.Path.GetFileName(dir), Tag = dir };
-                        subItem.Expanded += Folder_Expanded;
-                        subItem.Items.Add(null);
-                        item.Items.Add(subItem);
+                        var dirInfo = new DirectoryInfo(dir);
+                        if ((dirInfo.Attributes & FileAttributes.System) != FileAttributes.System &&
+                            (dirInfo.Attributes & FileAttributes.Hidden) != FileAttributes.Hidden)
+                        {
+                            var subItem = new TreeViewItem() { Header = dirInfo.Name, Tag = dirInfo.FullName };
+                            subItem.Expanded += Folder_Expanded;
+                            subItem.Items.Add(null);
+                            item.Items.Add(subItem);
+                        }
                     }
 
-                    foreach (var file in await Task.Run(() => Directory.GetFiles(fullPath)))
+                    foreach (var file in files)
                     {
-                        var subItem = new TreeViewItem() { Header = System.IO.Path.GetFileName(file), Tag = file };
-                        item.Items.Add(subItem);
+                        var fileInfo = new FileInfo(file);
+                        if ((fileInfo.Attributes & FileAttributes.System) != FileAttributes.System &&
+                            (fileInfo.Attributes & FileAttributes.Hidden) != FileAttributes.Hidden)
+                        {
+                            var subItem = new TreeViewItem() { Header = fileInfo.Name, Tag = fileInfo.FullName };
+                            item.Items.Add(subItem);
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Nie można wczytać: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Dispatcher.Invoke(() => MessageBox.Show($"Error loading directory: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error));
                 }
             }
         }
@@ -195,4 +208,3 @@ namespace WpfApp1
 
     }
 }
-
