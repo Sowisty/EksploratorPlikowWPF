@@ -19,19 +19,28 @@
             </TreeView.ContextMenu>
         </TreeView>
 
-
         <!-- Podgląd po prawej stronie -->
-        <ScrollViewer Grid.Column="1" Margin="10" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel Grid.Column="1" Margin="1">
-                <TextBox Name="TextBoxPreview" 
-                     Visibility="Collapsed" 
-                     VerticalScrollBarVisibility="Auto" 
-                     HorizontalScrollBarVisibility="Auto" 
-                     TextWrapping="Wrap" 
-                     AcceptsReturn="True"
-                     IsReadOnly="True"/>
-                <Image Name="ImagePreview" Visibility="Collapsed" Stretch="Uniform" StretchDirection="Both"/>
-            </StackPanel>
-        </ScrollViewer>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Row="0" Margin="10" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel Margin="1">
+                    <TextBox Name="TextBoxPreview" 
+                         Visibility="Collapsed" 
+                         VerticalScrollBarVisibility="Auto" 
+                         HorizontalScrollBarVisibility="Auto" 
+                         TextWrapping="Wrap" 
+                         AcceptsReturn="True"
+                         IsReadOnly="True"/>
+                </StackPanel>
+            </ScrollViewer>
+            <Image Grid.Row="0" Name="ImagePreview" Visibility="Collapsed" Stretch="Uniform" StretchDirection="Both"/>
+        </Grid>
     </Grid>
+
+
+
 </Window>
